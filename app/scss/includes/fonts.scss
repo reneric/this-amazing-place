@@ -1,0 +1,43 @@
+@import "http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,600,700,800,900";
+@import "http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100";
+/*------- Mixins -------*/
+@mixin font($font, $size, $weight, $lh){
+	font-family:$font;
+	font-size:$size;
+	font-weight: $weight;
+	line-height: $lh;
+}
+$thin:100;
+$medium:300;
+$normal:500;
+$thick:700;
+$bold:900;
+
+/*------- Fonts -------*/
+$rale: "Raleway";
+$robo: "Roboto Slab";
+
+
+
+/*------- Headers -------*/
+h1,h2,h4,h5{
+	
+}
+h1{
+	@include font($rale,26px,normal,26px);
+	text-transform: uppercase;
+}
+h2{
+	@include font($rale,24px,normal,24px);
+}
+h3{
+	@include font($rale,18px,normal,18px);
+}
+h4{
+	@include font($rale,14px,normal,14px);
+}
+h5{
+	@include font($rale,12px,normal,12px);
+}
+
+

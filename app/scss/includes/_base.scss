@@ -1,0 +1,14 @@
+/*------- Variables -------*/
+$container:1000px;
+$page-margin:-60px;
+$property:width;
+$x: 50%;
+$y:20px;
+
+/*------- Mixins -------*/
+@mixin cal($property, $calc...){
+	$property: -webkit-calc($calc);
+	$property:    -moz-calc($calc);
+	$property:      -o-calc($calc);
+	$property:         calc($calc);
+}

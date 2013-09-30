@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <title>The Amazing Place</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/app.css" rel="stylesheet" media="screen">
+    <link href="css/live.css" rel="stylesheet" media="screen">
+    <base href="/amazingplace/app/">
+    <script src="js/modernizr.js"></script>
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="container" ng-app>
+<!-- Navigation -->
+<div id="fixed"></div>
+  <div id="nav-wrap">
+    <nav class="navbar navbar-default" role="navigation" ng-controller="Nav">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div><!-- navbar-header -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav" ng-click="$event.preventDefault()">
+            <li class="{{page.div}}" ng-repeat="page in pages" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)">
+              <a class="{{page.div}}" data-scroll="{{page.scroll}}" href="#/{{page.div}}">{{page.name}}</a>
+            </li>
+        </ul><!-- nav -->
+      </div><!-- /.navbar-collapse -->
+    </nav><!-- navbar -->
+  </div><!-- nav-wrap -->
+<!-- Pages/views -->
+  <div id="pages">
+    <div class="pages-wrap" ng-controller="Pages"> 
+      <div id="intro" class="page">
+        <div class="banner" data-speed="3" data-offsetY="100" data-type="background"></div>
+      </div><!-- intro -->
+      <div id="{{page.div}}" class="page" ng-repeat="page in pages" ng-include="page.layout"></div>
+    </div><!-- page-wrap   -->
+  </div><!-- pages -->
+  <!-- end pages/views -->
+<footer ng-include="'partials/footer.html'"></footer>
+</div><!-- container -->
+<script src="//code.jquery.com/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/main.js"></script>
+    <!--<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>-->
+  </body>
+</html>
