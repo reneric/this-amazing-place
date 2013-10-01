@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"scr",
+				"scrollTop	.scrollTop()"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"repe",
+				"repeat-x"
+			],
+			[
 				"com",
 				"com	/*-----*/"
 			],
@@ -74,10 +86,6 @@
 			[
 				"as",
 				"ashlt"
-			],
-			[
-				"background",
-				"background-clip"
 			],
 			[
 				"bac",
@@ -175,85 +183,7 @@
 			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 2520,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/partials/events.html",
-			"settings":
-			{
-				"buffer_size": 704,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/partials/footer.html",
-			"settings":
-			{
-				"buffer_size": 103,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/partials/tickets.html",
-			"settings":
-			{
-				"buffer_size": 57,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/partials/need.html",
-			"settings":
-			{
-				"buffer_size": 558,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scss/app.scss",
-			"settings":
-			{
-				"buffer_size": 23188,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scss/includes/_application.scss",
-			"settings":
-			{
-				"buffer_size": 155,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "",
-			"file": "app/scss/includes/_grid.scss",
-			"file_size": 0,
-			"file_write_time": 1380405357000000,
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/css/app.css",
-			"settings":
-			{
-				"buffer_size": 26344,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "//v1.7\n// Flash Player Version Detection\n// Detect Client Browser type\n// Copyright 2005-2007 Adobe Systems Incorporated.  All rights reserved.\nvar isIE  = (navigator.appVersion.indexOf(\"MSIE\") != -1) ? true : false;\nvar isWin = (navigator.appVersion.toLowerCase().indexOf(\"win\") != -1) ? true : false;\nvar isOpera = (navigator.userAgent.indexOf(\"Opera\") != -1) ? true : false;\n\nfunction ControlVersion()\n{\n	var version;\n	var axo;\n	var e;\n\n	// NOTE : new ActiveXObject(strFoo) throws an exception if strFoo isn't in the registry\n\n	try {\n		// version will be set for 7.X or greater players\n		axo = new ActiveXObject(\"ShockwaveFlash.ShockwaveFlash.7\");\n		version = axo.GetVariable(\"$version\");\n	} catch (e) {\n	}\n\n	if (!version)\n	{\n		try {\n			// version will be set for 6.X players only\n			axo = new ActiveXObject(\"ShockwaveFlash.ShockwaveFlash.6\");\n			\n			// installed player is some revision of 6.0\n			// GetVariable(\"$version\") crashes for versions 6.0.22 through 6.0.29,\n			// so we have to be careful. \n			\n			// default to the first public version\n			version = \"WIN 6,0,21,0\";\n\n			// throws if AllowScripAccess does not exist (introduced in 6.0r47)		\n			axo.AllowScriptAccess = \"always\";\n\n			// safe to call for 6.0r47 or greater\n			version = axo.GetVariable(\"$version\");\n\n		} catch (e) {\n		}\n	}\n\n	if (!version)\n	{\n		try {\n			// version will be set for 4.X or 5.X player\n			axo = new ActiveXObject(\"ShockwaveFlash.ShockwaveFlash.3\");\n			version = axo.GetVariable(\"$version\");\n		} catch (e) {\n		}\n	}\n\n	if (!version)\n	{\n		try {\n			// version will be set for 3.X player\n			axo = new ActiveXObject(\"ShockwaveFlash.ShockwaveFlash.3\");\n			version = \"WIN 3,0,18,0\";\n		} catch (e) {\n		}\n	}\n\n	if (!version)\n	{\n		try {\n			// version will be set for 2.X player\n			axo = new ActiveXObject(\"ShockwaveFlash.ShockwaveFlash\");\n			version = \"WIN 2,0,0,11\";\n		} catch (e) {\n			version = -1;\n		}\n	}\n	\n	return version;\n}\n\n// JavaScript helper required to detect Flash Player PlugIn version information\nfunction GetSwfVer(){\n	// NS/Opera version >= 3 check for Flash plugin in plugin array\n	var flashVer = -1;\n	\n	if (navigator.plugins != null && navigator.plugins.length > 0) {\n		if (navigator.plugins[\"Shockwave Flash 2.0\"] || navigator.plugins[\"Shockwave Flash\"]) {\n			var swVer2 = navigator.plugins[\"Shockwave Flash 2.0\"] ? \" 2.0\" : \"\";\n			var flashDescription = navigator.plugins[\"Shockwave Flash\" + swVer2].description;\n			var descArray = flashDescription.split(\" \");\n			var tempArrayMajor = descArray[2].split(\".\");			\n			var versionMajor = tempArrayMajor[0];\n			var versionMinor = tempArrayMajor[1];\n			var versionRevision = descArray[3];\n			if (versionRevision == \"\") {\n				versionRevision = descArray[4];\n			}\n			if (versionRevision[0] == \"d\") {\n				versionRevision = versionRevision.substring(1);\n			} else if (versionRevision[0] == \"r\") {\n				versionRevision = versionRevision.substring(1);\n				if (versionRevision.indexOf(\"d\") > 0) {\n					versionRevision = versionRevision.substring(0, versionRevision.indexOf(\"d\"));\n				}\n			}\n			var flashVer = versionMajor + \".\" + versionMinor + \".\" + versionRevision;\n		}\n	}\n	// MSN/WebTV 2.6 supports Flash 4\n	else if (navigator.userAgent.toLowerCase().indexOf(\"webtv/2.6\") != -1) flashVer = 4;\n	// WebTV 2.5 supports Flash 3\n	else if (navigator.userAgent.toLowerCase().indexOf(\"webtv/2.5\") != -1) flashVer = 3;\n	// older WebTV supports Flash 2\n	else if (navigator.userAgent.toLowerCase().indexOf(\"webtv\") != -1) flashVer = 2;\n	else if ( isIE && isWin && !isOpera ) {\n		flashVer = ControlVersion();\n	}	\n	return flashVer;\n}\n\n// When called with reqMajorVer, reqMinorVer, reqRevision returns true if that version or greater is available\nfunction DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision)\n{\n	versionStr = GetSwfVer();\n	if (versionStr == -1 ) {\n		return false;\n	} else if (versionStr != 0) {\n		if(isIE && isWin && !isOpera) {\n			// Given \"WIN 2,0,0,11\"\n			tempArray         = versionStr.split(\" \"); 	// [\"WIN\", \"2,0,0,11\"]\n			tempString        = tempArray[1];			// \"2,0,0,11\"\n			versionArray      = tempString.split(\",\");	// ['2', '0', '0', '11']\n		} else {\n			versionArray      = versionStr.split(\".\");\n		}\n		var versionMajor      = versionArray[0];\n		var versionMinor      = versionArray[1];\n		var versionRevision   = versionArray[2];\n\n        	// is the major.revision >= requested major.revision AND the minor version >= requested minor\n		if (versionMajor > parseFloat(reqMajorVer)) {\n			return true;\n		} else if (versionMajor == parseFloat(reqMajorVer)) {\n			if (versionMinor > parseFloat(reqMinorVer))\n				return true;\n			else if (versionMinor == parseFloat(reqMinorVer)) {\n				if (versionRevision >= parseFloat(reqRevision))\n					return true;\n			}\n		}\n		return false;\n	}\n}\n\nfunction AC_AddExtension(src, ext)\n{\n  if (src.indexOf('?') != -1)\n    return src.replace(/\\?/, ext+'?'); \n  else\n    return src + ext;\n}\n\nfunction AC_Generateobj(objAttrs, params, embedAttrs) \n{ \n  var str = '';\n  if (isIE && isWin && !isOpera)\n  {\n    str += '<object ';\n    for (var i in objAttrs)\n    {\n      str += i + '=\"' + objAttrs[i] + '\" ';\n    }\n    str += '>';\n    for (var i in params)\n    {\n      str += '<param name=\"' + i + '\" value=\"' + params[i] + '\" /> ';\n    }\n    str += '</object>';\n  }\n  else\n  {\n    str += '<embed ';\n    for (var i in embedAttrs)\n    {\n      str += i + '=\"' + embedAttrs[i] + '\" ';\n    }\n    str += '> </embed>';\n  }\n\n  document.write(str);\n}\n\nfunction AC_FL_RunContent(){\n  var ret = \n    AC_GetArgs\n    (  arguments, \".swf\", \"movie\", \"clsid:d27cdb6e-ae6d-11cf-96b8-444553540000\"\n     , \"application/x-shockwave-flash\"\n    );\n  AC_Generateobj(ret.objAttrs, ret.params, ret.embedAttrs);\n}\n\nfunction AC_SW_RunContent(){\n  var ret = \n    AC_GetArgs\n    (  arguments, \".dcr\", \"src\", \"clsid:166B1BCA-3F9C-11CF-8075-444553540000\"\n     , null\n    );\n  AC_Generateobj(ret.objAttrs, ret.params, ret.embedAttrs);\n}\n\nfunction AC_GetArgs(args, ext, srcParamName, classid, mimeType){\n  var ret = new Object();\n  ret.embedAttrs = new Object();\n  ret.params = new Object();\n  ret.objAttrs = new Object();\n  for (var i=0; i < args.length; i=i+2){\n    var currArg = args[i].toLowerCase();    \n\n    switch (currArg){	\n      case \"classid\":\n        break;\n      case \"pluginspage\":\n        ret.embedAttrs[args[i]] = args[i+1];\n        break;\n      case \"src\":\n      case \"movie\":	\n        args[i+1] = AC_AddExtension(args[i+1], ext);\n        ret.embedAttrs[\"src\"] = args[i+1];\n        ret.params[srcParamName] = args[i+1];\n        break;\n      case \"onafterupdate\":\n      case \"onbeforeupdate\":\n      case \"onblur\":\n      case \"oncellchange\":\n      case \"onclick\":\n      case \"ondblClick\":\n      case \"ondrag\":\n      case \"ondragend\":\n      case \"ondragenter\":\n      case \"ondragleave\":\n      case \"ondragover\":\n      case \"ondrop\":\n      case \"onfinish\":\n      case \"onfocus\":\n      case \"onhelp\":\n      case \"onmousedown\":\n      case \"onmouseup\":\n      case \"onmouseover\":\n      case \"onmousemove\":\n      case \"onmouseout\":\n      case \"onkeypress\":\n      case \"onkeydown\":\n      case \"onkeyup\":\n      case \"onload\":\n      case \"onlosecapture\":\n      case \"onpropertychange\":\n      case \"onreadystatechange\":\n      case \"onrowsdelete\":\n      case \"onrowenter\":\n      case \"onrowexit\":\n      case \"onrowsinserted\":\n      case \"onstart\":\n      case \"onscroll\":\n      case \"onbeforeeditfocus\":\n      case \"onactivate\":\n      case \"onbeforedeactivate\":\n      case \"ondeactivate\":\n      case \"type\":\n      case \"codebase\":\n      case \"id\":\n        ret.objAttrs[args[i]] = args[i+1];\n        break;\n      case \"width\":\n      case \"height\":\n      case \"align\":\n      case \"vspace\": \n      case \"hspace\":\n      case \"class\":\n      case \"title\":\n      case \"accesskey\":\n      case \"name\":\n      case \"tabindex\":\n        ret.embedAttrs[args[i]] = ret.objAttrs[args[i]] = args[i+1];\n        break;\n      default:\n        ret.embedAttrs[args[i]] = ret.params[args[i]] = args[i+1];\n    }\n  }\n  ret.objAttrs[\"classid\"] = classid;\n  if (mimeType) ret.embedAttrs[\"type\"] = mimeType;\n  return ret;\n}\n",
-			"file": "/Users/rsimmons/Desktop/AC_RunActiveContent.js",
-			"file_size": 8029,
-			"file_write_time": 1379966220000000,
-			"settings":
-			{
-				"buffer_size": 8029,
+				"buffer_size": 3075,
 				"line_ending": "Unix"
 			}
 		},
@@ -261,7 +191,31 @@
 			"file": "app/js/controller.js",
 			"settings":
 			{
-				"buffer_size": 1191,
+				"buffer_size": 2068,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/partials/events.html",
+			"settings":
+			{
+				"buffer_size": 776,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/partials/footer.html",
+			"settings":
+			{
+				"buffer_size": 425,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/js/plugins.js",
+			"settings":
+			{
+				"buffer_size": 5023,
 				"line_ending": "Unix"
 			}
 		},
@@ -269,7 +223,58 @@
 			"file": "app/js/app.js",
 			"settings":
 			{
-				"buffer_size": 579,
+				"buffer_size": 434,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/js/main.js",
+			"settings":
+			{
+				"buffer_size": 3084,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"file": "/Users/rsimmons/Desktop/Development/myApps/cast/index.html",
+			"file_size": 670,
+			"file_write_time": 1380600130000000,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/partials/involved.html",
+			"settings":
+			{
+				"buffer_size": 1086,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/partials/need.html",
+			"settings":
+			{
+				"buffer_size": 2622,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scss/app.scss",
+			"settings":
+			{
+				"buffer_size": 32504,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/css/app.css",
+			"settings":
+			{
+				"buffer_size": 35618,
 				"line_ending": "Unix"
 			}
 		}
@@ -277,9 +282,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 207.0,
 		"selected_items":
 		[
+			[
+				"mon",
+				"SFTP: Monitor File (Upload on External Save)"
+			],
 			[
 				"mo",
 				"SFTP: Monitor File (Upload on External Save)"
@@ -314,10 +323,6 @@
 			],
 			[
 				"Moni",
-				"SFTP: Monitor File (Upload on External Save)"
-			],
-			[
-				"mon",
 				"SFTP: Monitor File (Upload on External Save)"
 			],
 			[
@@ -449,7 +454,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 521.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -466,10 +471,39 @@
 	},
 	"file_history":
 	[
+		"/Users/rsimmons/Desktop/Development/Projects/sigma/functions.php",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/partials/need.html",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/js/main.js",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/img/icon-sprite.webp",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/img/icon-sprite.png",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/partials/involved.html",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/img/need-header.png",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/img/involved-header.png",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/img/involved.png",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/css/app.css",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/scss/includes/_application.scss",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/scss/includes/fonts.scss",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/.htaccess",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/js/app.js",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/js/controller.js",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/partials/footer.html",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/scss/includes/_base.scss",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/css/rotate.css",
+		"/Users/rsimmons/Desktop/AC_RunActiveContent.js",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/partials/tickets.html",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/scss/app.scss",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/img/play.png",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/img/play.webp",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/scss/includes/rotate.scss",
+		"/Users/rsimmons/Desktop/Development/Projects/sigma/js/main.js",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/scss/includes/_grid.scss",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/scss/includes/colors.scss",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/css/colors.css",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/css/fonts.css",
+		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/partials/events.html",
 		"/Users/rsimmons/Desktop/Development/Projects/bootstrap/css.html",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/scss/fonts.scss",
 		"/Users/rsimmons/Desktop/Development/Projects/angular-phonecat/app/index-async.html",
-		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/partials/involved.html",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/partials/sponsor.html",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/js/modernizr.js",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/scss/rotate.scss",
@@ -479,10 +513,8 @@
 		"/Users/rsimmons/Desktop/Development/Projects/sigma/scss/custom.scss",
 		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/User/calc.sublime-snippet",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/partials/events.html",
-		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/partials/events.html",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/css/live.css",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/scss/colors.scss",
-		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/app/js/controller.js",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/partials/app.js",
 		"/Users/rsimmons/Desktop/Development/Projects/angular-phonecat/app/index.html",
 		"/Users/rsimmons/Desktop/Development/Projects/AmazingPlace/index.html",
@@ -566,34 +598,7 @@
 		"/Users/rsimmons/Desktop/Development/Projects/Sigma/img/navbg.png",
 		"/Users/rsimmons/Desktop/Development/Projects/sigma/js/fastclick.js",
 		"/Users/rsimmons/Desktop/Development/Projects/Sigma/img/arrow.png",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/img/menu.png",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/css/ie.css",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/style.css",
-		"/Users/rsimmons/Desktop/test.php",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/team.php",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/sidebar.php",
-		"/Users/rsimmons/Desktop/Development/Projects/sigma/inc/post-types.php",
-		"/Users/rsimmons/Desktop/test.html",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/Prefixr/Default (OSX).sublime-keymap",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/User/Autoprefixer.sublime-settings",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/Autoprefixer/Autoprefixer.sublime-commands",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/Autoprefixer/Autoprefixer.sublime-settings",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/style.min.css",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/css/test.css",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/User/f.jquery.sublime-snippet",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/User/el.jquery.sublime-snippet",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/package.json",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/Gruntfile.js",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/node_modules/grunt-contrib-imagemin/tasks/imagemin.js",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/node_modules/grunt-contrib-imagemin/Gruntfile.js",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/node_modules/grunt-contrib-imagemin/package.json",
-		"/Users/rsimmons/Desktop/Development/Projects/Sigma/node_modules/grunt-contrib-sass/package.json",
-		"/Users/rsimmons/Desktop/Development/myApps/Grunt/Gruntfile.js",
-		"/Users/rsimmons/Desktop/Development/myApps/Grunt/package.json",
-		"/Users/rsimmons/Desktop/Development/myApps/Grunt/gruntfile.js",
-		"/Users/rsimmons/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+		"/Users/rsimmons/Desktop/Development/Projects/Sigma/img/menu.png"
 	],
 	"find":
 	{
@@ -611,6 +616,110 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"plugins",
+			"height",
+			"opacity",
+			"height",
+			"opacity",
+			"1s",
+			"modal",
+			"normal",
+			"2s",
+			"opacity",
+			"99999",
+			"99999999999",
+			"999999",
+			"png",
+			"rotate",
+			"plugins",
+			"tagline",
+			"span",
+			"h1",
+			"right",
+			"left",
+			"involved",
+			"green",
+			"purple",
+			"vol",
+			"Sexuall",
+			"abused",
+			"Physically",
+			"homeless",
+			"college",
+			"highschool",
+			"icons",
+			"need",
+			"NEED",
+			"Need",
+			"need",
+			"webp",
+			"10",
+			"down",
+			"div",
+			"container",
+			"involved",
+			"container",
+			"involved",
+			"container",
+			"div",
+			"event",
+			"pages",
+			"scroll",
+			"pneedages",
+			"need",
+			"involved",
+			"event",
+			"div",
+			"event",
+			"absolute",
+			"2s",
+			"fixed",
+			"offsetLeft",
+			"wrap",
+			"scroll",
+			"0",
+			"navWrapLeft",
+			"cOffset",
+			"left",
+			"value",
+			"container",
+			"offsetLeft",
+			"nav",
+			"center",
+			"image",
+			"twitter",
+			"YOLO",
+			"Lik",
+			"o",
+			"facebook",
+			"folder",
+			"subfolder",
+			"transform",
+			"plugins",
+			"base",
+			"background",
+			"direction",
+			"window",
+			"sprite",
+			"background",
+			"55px",
+			"container",
+			"meet",
+			"ffffff",
+			"collapse",
+			"l",
+			"388px",
+			"260px",
+			"&",
+			"&.",
+			"span",
+			"icons",
+			"highschool",
+			"need",
+			"center",
+			"font",
+			"bold",
+			"font",
 			"rotate",
 			"png",
 			"width",
@@ -634,111 +743,7 @@
 			"240px",
 			"50",
 			"    -",
-			"left",
-			"layouts",
-			"controller",
-			"MainCtrl",
-			"home",
-			"controller",
-			"amazingplace",
-			"PhoneListCtrl",
-			"todoApp",
-			"amazingplace",
-			"list",
-			"ffffff",
-			"MyChildCtrl",
-			"sponsor",
-			"tickets",
-			"involved",
-			"event",
-			"evening",
-			"template2",
-			"event",
-			"ThisEvent",
-			"Amazing",
-			"Event",
-			"This",
-			"Amazing",
-			"event",
-			"Thi",
-			"Amazin",
-			"Event",
-			"Nexus",
-			"before",
-			"center",
-			"bootstrap",
-			"min",
-			"intro",
-			"rotate",
-			"includes",
-			"min",
-			"bootstrap",
-			"One",
-			" </",
-			"morelink",
-			"  ",
-			"separated",
-			"Separate",
-			"link",
-			"Something",
-			"else",
-			"here",
-			"Another",
-			"action",
-			"Bootstrap",
-			"101",
-			"Template",
-			"hidden",
-			".fade",
-			"span.fade",
-			"fade",
-			"();\n",
-			"width",
-			"test",
-			"fadeOut",
-			"fade",
-			"calc",
-			"excerpt",
-			"masthead",
-			"footer",
-			"width",
-			"fadeOut",
-			"text_be",
-			"cssanimate",
-			"function",
-			"cssclass",
-			"modernizr",
-			"min",
-			"mbivain",
-			"jQuery",
-			"main",
-			"masthead",
-			"footer",
-			"subnav",
-			"position",
-			"medium",
-			"center",
-			"Rouge",
-			"Baton",
-			"mast",
-			"summar",
-			"display",
-			"display:",
-			"resize",
-			"1000",
-			"this",
-			"1500",
-			"current",
-			"amp",
-			"page",
-			"transparent",
-			"menu-t",
-			"transparent",
-			"masthead",
-			"open",
-			"toggle",
-			"menu",
-			"subnav"
+			"left"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -757,7 +762,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -765,15 +770,15 @@
 					"file": "app/index.html",
 					"settings":
 					{
-						"buffer_size": 2520,
+						"buffer_size": 3075,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2319,
-								2319
+								620,
+								0
 							]
 						],
 						"settings":
@@ -831,17 +836,93 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 586.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "app/js/controller.js",
+					"settings":
+					{
+						"buffer_size": 2068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								411,
+								411
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sftp_duplicate_views": 0.0,
+							"synced": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "app/partials/events.html",
 					"settings":
 					{
-						"buffer_size": 704,
+						"buffer_size": 776,
 						"regions":
 						{
 							"TagLint":
@@ -851,8 +932,8 @@
 								"regions":
 								[
 									[
-										116,
-										121
+										150,
+										155
 									]
 								],
 								"scope": "variable.parameter"
@@ -861,8 +942,8 @@
 						"selection":
 						[
 							[
-								0,
-								704
+								61,
+								61
 							]
 						],
 						"settings":
@@ -925,19 +1006,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "app/partials/footer.html",
 					"settings":
 					{
-						"buffer_size": 103,
+						"buffer_size": 425,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								103,
-								103
+								164,
+								164
 							]
 						],
 						"settings":
@@ -989,80 +1070,7 @@
 							"incomplete_sync": null,
 							"is_xml": false,
 							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/partials/tickets.html",
-					"settings":
-					{
-						"buffer_size": 57,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								57,
-								57
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"incomplete_sync": null,
-							"is_xml": false,
-							"remote_loading": false,
+							"sftp_duplicate_views": 0.0,
 							"synced": true,
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
@@ -1074,111 +1082,18 @@
 				},
 				{
 					"buffer": 4,
-					"file": "app/partials/need.html",
+					"file": "app/js/plugins.js",
 					"settings":
 					{
-						"buffer_size": 558,
-						"regions":
-						{
-							"TagLint":
-							{
-								"flags": 52,
-								"icon": "dot",
-								"regions":
-								[
-									[
-										522,
-										528
-									]
-								],
-								"scope": "variable.parameter"
-							}
-						},
-						"selection":
-						[
-							[
-								460,
-								460
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"incomplete_sync": null,
-							"is_xml": false,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 5,
-					"file": "app/scss/app.scss",
-					"settings":
-					{
-						"buffer_size": 23188,
+						"buffer_size": 5023,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3633,
-								3633
+								5023,
+								5023
 							]
 						],
 						"settings":
@@ -1230,29 +1145,103 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3109.0,
+						"translation.y": 1321.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/js/app.js",
+					"settings":
+					{
+						"buffer_size": 434,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								98,
+								98
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sftp_duplicate_views": 0.0,
+							"synced": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "app/scss/includes/_application.scss",
+					"file": "app/js/main.js",
 					"settings":
 					{
-						"buffer_size": 155,
+						"buffer_size": 3084,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								102,
-								102
+								3081,
+								3081
 							]
 						],
 						"settings":
@@ -1302,18 +1291,22 @@
 								"bh_single_quote_close"
 							],
 							"incomplete_sync": null,
+							"remote_loading": false,
+							"sftp_duplicate_views": 0.0,
 							"synced": true,
-							"syntax": "Packages/SCSS/SCSS.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1951.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 7,
-					"file": "app/scss/includes/_grid.scss",
+					"file": "/Users/rsimmons/Desktop/Development/myApps/cast/index.html",
 					"settings":
 					{
 						"buffer_size": 0,
@@ -1374,9 +1367,12 @@
 								"bh_single_quote_close"
 							],
 							"incomplete_sync": null,
+							"is_remote": true,
+							"is_xml": false,
 							"remote_loading": false,
 							"synced": true,
-							"syntax": "Packages/SCSS/SCSS.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tmp_dir": "/var/folders/tx/q246r1wj4rb4wg4nf2hmfgr80000gn/T/sublime-sftp-browse-1380599835/iCodeThings/"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1386,18 +1382,189 @@
 				},
 				{
 					"buffer": 8,
-					"file": "app/css/app.css",
+					"file": "app/partials/involved.html",
 					"settings":
 					{
-						"buffer_size": 26344,
+						"buffer_size": 1086,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5649,
-								5649
+								774,
+								774
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"incomplete_sync": null,
+							"is_xml": false,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app/partials/need.html",
+					"settings":
+					{
+						"buffer_size": 2622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2598,
+								2598
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"incomplete_sync": null,
+							"is_xml": false,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1006.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 10,
+					"file": "app/scss/app.scss",
+					"settings":
+					{
+						"buffer_size": 32504,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10727,
+								10727
+							],
+							[
+								10769,
+								10769
+							],
+							[
+								10810,
+								10810
+							],
+							[
+								10850,
+								10850
+							],
+							[
+								10887,
+								10887
 							]
 						],
 						"settings":
@@ -1449,22 +1616,21 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4346.0,
+						"translation.y": 10347.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "/Users/rsimmons/Desktop/AC_RunActiveContent.js",
+					"buffer": 11,
+					"file": "app/css/app.css",
 					"settings":
 					{
-						"buffer_size": 8029,
+						"buffer_size": 35618,
 						"regions":
 						{
 						},
@@ -1523,156 +1689,10 @@
 							],
 							"incomplete_sync": null,
 							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "app/js/controller.js",
-					"settings":
-					{
-						"buffer_size": 1191,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								139,
-								139
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
 							"synced": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "app/js/app.js",
-					"settings":
-					{
-						"buffer_size": 579,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								338,
-								338
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1711,7 +1731,7 @@
 		"cols":
 		[
 			0.0,
-			0.2,
+			0.8,
 			1.0
 		],
 		"rows":
@@ -1748,8 +1768,72 @@
 				"app/partials/need.html"
 			],
 			[
+				"invol",
+				"app/partials/involved.html"
+			],
+			[
+				"contro",
+				"app/js/controller.js"
+			],
+			[
+				"app",
+				"app/css/app.css"
+			],
+			[
+				"app.scss",
+				"app/scss/app.scss"
+			],
+			[
+				"main",
+				"app/js/main.js"
+			],
+			[
 				"app.css",
 				"app/css/app.css"
+			],
+			[
+				"ro",
+				"app/scss/includes/rotate.scss"
+			],
+			[
+				"rotate",
+				"app/css/rotate.css"
+			],
+			[
+				"base",
+				"app/scss/includes/_base.scss"
+			],
+			[
+				"plug",
+				"app/js/plugins.js"
+			],
+			[
+				"control",
+				"app/js/controller.js"
+			],
+			[
+				"pl",
+				"app/js/plugins.js"
+			],
+			[
+				"app.",
+				"app/js/app.js"
+			],
+			[
+				"appl",
+				"app/scss/includes/_application.scss"
+			],
+			[
+				"col",
+				"app/scss/includes/colors.scss"
+			],
+			[
+				"color",
+				"app/scss/includes/colors.scss"
+			],
+			[
+				"fonts",
+				"app/scss/includes/fonts.scss"
 			],
 			[
 				"tick",
@@ -1760,28 +1844,12 @@
 				"app/partials/sponsor.html"
 			],
 			[
-				"invol",
-				"app/partials/involved.html"
-			],
-			[
-				"fonts",
-				"app/scss/fonts.scss"
-			],
-			[
-				"app",
-				"app/scss/app.scss"
-			],
-			[
 				"even",
 				"app/partials/events.html"
 			],
 			[
 				"index",
 				"app/index.html"
-			],
-			[
-				"control",
-				"app/js/controller.js"
 			],
 			[
 				"inde",
@@ -1824,10 +1892,6 @@
 				"css/bigvideo.css"
 			],
 			[
-				"main",
-				"js/main.js"
-			],
-			[
 				"bigv",
 				"css/bigvideo.css"
 			],
@@ -1866,10 +1930,6 @@
 			[
 				"staff",
 				"staff.php"
-			],
-			[
-				"plug",
-				"js/plugins.js"
 			],
 			[
 				"plugi",
@@ -2214,38 +2274,6 @@
 			[
 				"contact",
 				"contact.php"
-			],
-			[
-				"map",
-				"map.php"
-			],
-			[
-				"ab",
-				"lab.php"
-			],
-			[
-				"fle",
-				"js/min/flexslider.min.js"
-			],
-			[
-				"fl",
-				"js/flexslider.js"
-			],
-			[
-				"flex",
-				"css/flexslider.css"
-			],
-			[
-				"scripts",
-				"ch-admin/footer-scripts.php"
-			],
-			[
-				"comment",
-				"comments.php"
-			],
-			[
-				"custom.",
-				"scss/custom.scss"
 			]
 		],
 		"width": 0.0
@@ -2261,7 +2289,7 @@
 	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 236.0,
 	"status_bar_visible": false
 }

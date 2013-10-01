@@ -1,11 +1,23 @@
 <div class="social footer">
 	<h1>Stay up-to-date</h1>
-	<a href="#" id="fb" target="_blank" class="sm">Like us on facebook</a>
-	<a href="#" id="tw" target="_blank" class="sm">Follow us on twitter</a>
+	<a href="https://www.facebook.com/ThisAmazingPlace" id="fb" target="_blank" class="sm">Like us <br/>on facebook</a>
+	<a href="http://twitter.com" id="tw" target="_blank" class="sm">Follow us <br/>on twitter</a>
 	<div class="copy">
-		<p>&copy; HP Serve</p>
+		<p>&copy; 2013 HP Serve</p>
 		<p>Site designed and developed by <a href="http://yolodesign.com" target="_blank">YOLO</a></p>
 	</div>
 </div>
-<div class="questions footer"></div>
-<div class="pages footer"></div>
+<div class="questions footer">
+	<h1>Have Questions?</h1>
+	<h2>Contact us at</h2>
+	<p>225.753.2273 or</p>
+	<p><a href="mailto:info@thisamazingplace.org">info@thisamazingplace.org</a></p>
+</div>
+<div class="pages footer">
+	<h1>Pages</h1>
+	<ul ng-controller="Nav">
+<li class="{{page.div}}" ng-repeat="page in pages" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)">
+	<a class="{{page.div}}" data-scroll="{{page.scroll}}" href="#/{{page.div}}">{{page.name}}</a>
+</li>
+	</ul>
+</div>

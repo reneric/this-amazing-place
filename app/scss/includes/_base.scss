@@ -12,3 +12,29 @@ $y:20px;
 	$property:      -o-calc($calc);
 	$property:         calc($calc);
 }
+@mixin br($t){
+	-webkit-border-radius: $t;
+	-moz-border-radius: $t;
+	border-radius: $t;
+}
+@mixin bs($t){
+	-webkit-box-shadow: $t;
+	-moz-box-shadow: $t;
+	box-shadow: $t;
+}
+@mixin trans($target){
+	-webkit-transition: $target;
+	-moz-transition: $target;
+	-ms-transition: $target;
+	-o-transition: $target;
+	transition: $target;
+}
+@mixin mobilehead{
+	min-height: 100%;
+	margin: 0 auto;
+	background-size: 100%;
+	width: -webkit-calc(100% - 15px);
+	width:    -moz-calc(100% - 15px);
+	width:      -o-calc(100% - 15px);
+	width:         calc(100% - 15px);
+}

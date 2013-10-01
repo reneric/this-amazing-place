@@ -1,0 +1,99 @@
+$mobile:728px;
+@media screen and (min-width: 320px) and (max-width: $mobile) {
+.webp {
+	#nav-wrap{
+		max-width: 100%;
+		position: fixed;
+		top: 0;
+	}
+
+	nav.navbar-default{
+		@include r(0deg);
+		background-color: $green;
+		top: 0px;
+		ul{
+			li{
+
+				a{
+					color: #fff;
+					@include font($rale,24px,300,30px);
+					text-transform: none;
+					border-bottom: 1px solid darken($green, 20%);
+					padding:10px;
+					margin:0 30px;
+				}
+				&.active{
+					a{
+						color: darken($green,40%);
+					}
+				}
+				&:last-child{
+					a{
+						border: none;
+					}
+				}
+
+			}
+		}
+		.navbar{
+			top: 0px;
+
+		}
+		.navbar-toggle{
+		background-color: lighten($green,10%);
+		$color: lighten($green,40%);
+		border-color: darken($green,20%);
+		color: $color;
+		span{
+			background-color:$color;
+		}
+	}
+	}
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+		background-color: darken($green,10%);
+		padding-bottom: 5px;
+		border-bottom: 1px solid darken($green, 25%);
+	}
+	#pages div.page#intro .banner {
+		position: relative;
+		@include mobilehead;
+	}
+	#pages {
+		#intro.page{
+			margin-top: -60px;
+		}
+		div.page#event {
+
+			div.left_col,div.right_col{
+				width: -webkit-calc(100% - 0px);
+				width:    -moz-calc(100% - 0px);
+				width:      -o-calc(100% - 0px);
+				width:         calc(100% - 0px);
+				margin: 0 auto;
+				h1{
+					min-height: 100%;
+					width: 100%;
+					display: block;
+					float: none;
+					background-size: 100%;
+					margin: 80px auto 40px;
+				}
+			}
+		}
+	}
+	#pages div.page#event div.left_col section.where ul li,#pages div.page#event div.left_col section.when h2{
+		font-weight: 300;
+	}
+	#pages div.page#event div.right_col div.details{
+		margin-top: 0px;
+		p{
+			text-align: center;
+			line-height: 35px;
+		}
+	}
+	#video{
+		max-width: 90%;
+	}
+}
+
+}

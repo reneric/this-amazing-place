@@ -5,6 +5,9 @@ body{
 	background-position:center center;
 	min-height: 2000px;
 }
+h1, h2, h3, h4, h5 {
+	max-width: 100%;
+}
 a{
 	color: #ffffff;
 }
@@ -84,12 +87,14 @@ body{
 }
 
 #pages{
+
 	div.page{
 		background-position:top left;
 		width: -webkit-calc(100% - 0px);
 		width:    -moz-calc(100% - 0px);
 		width:      -o-calc(100% - 0px);
 		width:         calc(100% - 0px);
+		background-repeat: no-repeat;
 		padding: 0 35px;
 		&#intro{
 			margin-top: 46px;
@@ -104,16 +109,17 @@ body{
 				right: 0;
 				top: 0;
 				bottom: 0;
-				background-image: url("../img/banner.png");
+				//background-image: url("../img/banner.png");
 				background-repeat:no-repeat;
 				background-position:center center;
 			}
 		}
+		&#gallery{display: none;}
 		&#event{
 			background-color: $green;
 			position: relative;
 			min-height: 760px;
-			background-repeat: no-repeat;
+			background-repeat: no-repeat;.
 			z-index: 1000;
 			margin-top: -62px;
 			overflow: hidden;
@@ -146,6 +152,7 @@ body{
 						@include font($rale,24px,100,30px);
 						color: #fff;
 						text-align: center;
+						text-transform: none;
 					}
 					h5{
 						@include font($rale,12px,700,12px);
@@ -165,6 +172,7 @@ body{
 							@include font($rale,24px,100,30px);
 							text-align: center;
 							color:#ffffff;
+							text-transform: none;
 						}
 					}
 				}
@@ -177,13 +185,54 @@ body{
 				float: left;
 				div.details{
 					margin: 100px 0px 0;
+					
 					p{
 						@include font($rale,22px,800,28px);
 						color: #fff;
 						text-transform: uppercase;
 						text-align: justify;
+
 					}
 				}
+				div.proceeds{
+					margin-top: 24px;
+					padding:20px 0 20px;
+					border-top: 1px solid #fff;
+					position: relative;
+					@include font($rale,18px,$thin,22px);
+					margin-bottom: 15px;
+					text-transform: none;
+					border-bottom: 1px solid #fff;
+					&:before, &:after{
+						content:"";
+						height: 1px;
+						width: 100%;
+						background-color: #fff;
+						position: absolute;
+					}
+					&:before{
+						top:-5px;
+					}
+					&:after{
+						bottom:-5px;
+					}
+				}
+				a.btn{
+						background-color: lighten($green, 10%);
+						display: block;	
+						@include trans(all 0.25s ease-in-out);
+						margin: 25px auto 0;
+						max-width: 220px;
+						border: 2px solid #fff;
+						@include br(5px);
+						max-height: 33px;
+						@include font($rale,14px,$bold,18px);
+						&:hover,&:active{
+							background-color: darken($green, 20%);
+							color: #fff;
+							border-color: #f4f4f4;	
+						}
+					}
 			}
 			&:before{
 				content: "";
@@ -209,22 +258,56 @@ body{
 			}
 		}
 		&#need{
-			min-height: 755px;
+			
 			padding: 0;
-			margin-top: $page-margin;
+			margin-top: 32px;
 			z-index: 1200;
 			position: relative;
 			.need-main{
-				padding: 1px 0 0;
+				background-color: $orange;
+				min-height: 755px;
+				position: relative;
+				$border-color: #fce7b6;
+				width: 100%;
+				height: 755px;
+				padding: 1px 35px 0;
+				&:before{
+					content: "";
+					border-color: $border-color;
+					border-style: solid;
+					border-width: 9px 0 0;
+					left: -100px;
+					position: absolute;
+					top: -42px;
+					height: 110px;
+					width: 1400px;
+					background-color: $orange;
+					@include r(5deg);  
+				}
+				&:after{
+					content: "";
+					left: -100px;
+					border-color: $border-color;
+					border-style: solid;
+					border-width: 9px 0 0px;
+					position: absolute;
+					bottom: -45px;
+					height: 110px;
+					width: 1400px;
+					background-color: #ffffff;
+					@include r(-5deg);
+					  
+				}
 				div.row{
 					&.header{
-						margin:70px 75px 0 15px;
+						margin:0px 75px 0 15px;
 					}
 					&.icons{
-						margin-top:30px;
+						margin-top:45px;
+						margin-bottom: 25px;
 					}
 					h1{
-						background-image: url("../img/need-header.webp");
+						background-image: url("../img/need-header.png");
 						background-repeat: no-repeat;
 						background-position: center right;
 						height: 193px;
@@ -244,7 +327,7 @@ body{
 					}
 					&.icons{
 						.icon{
-							background-image: url(../img/icon-sprite.webp);
+							background-image: url(../img/icon-sprite.png);
 							background-repeat: no-repeat;
 							height: 120px;
 							width: 100%;
@@ -292,10 +375,72 @@ body{
 					}
 				}
 			}
+			.meet{
+				height: 224px;
+				padding: 1px 35px 0;
+				margin-top: 20px;
+				width:3000px;
+				margin-left: -1500px;
+				@include r(-5deg);
+				background-color: $purple;
+				position: relative;
+				&:after, &:before {
+					position: absolute;
+					content: "";
+					width: 100%;
+				}
+				&:after {
+					background-color: $lightpurple;
+					height: 25px;
+					bottom: -25px;
+					z-index: 50;
+				}
+				&:before{
+					background-color: #f4f4f4;
+					@include r(-1deg);
+					z-index: 99;
+					height: 25px;
+					bottom: -42px;
+				}
+				.inner{
+					width: 1000px;
+					margin-top: 20px;
+					position: relative;
+					left: 1465px;
+					.description{
+						text-align: center;
+						margin-top: 20px;
+						p{
+							@include font($rale,16px,$bold,18px);
+							margin: 0 auto;
+							width: 100%;
+						}
+					}
+					a#play{
+						display: block;
+						background-image: url("../img/play.png");
+						background-repeat:no-repeat;
+						background-position:center center;
+						width: 51px;
+						height: 51px;
+						margin:14px auto 0;
+						&:hover{
+							opacity:.85;
+							
+						}
+					}
+					span{
+						@include font($rale,16px,$thin,18px);
+						margin: 20px auto 0;
+						display: block;
+						text-align: center;
+					}
+				}
+			}
 		}
 		&#involved{
 			height: 620px;
-			background-image: url(../img/involved.png);
+			//background-image: url(../img/involved.png);
 			margin-top: -40px;
 			padding: 1px 0 0;
 			border-bottom: 9px solid #e7e7e7;
@@ -308,6 +453,8 @@ body{
 				text-indent: -9999px;
 				float: left;
 			}
+
+
 		}
 		&#tickets{
 			
@@ -317,6 +464,10 @@ body{
 		}
 	}
 }
+
+
+
+
 .webp{
 	#pages{
 		.page{
@@ -335,68 +486,7 @@ body{
 			}
 			&#need{
 				.need-main{
-					background-image: url(../img/need.webp);
-					width: 100%;
-					height: 755px;
-					padding: 1px 35px 0;
-				}
-				.meet{
-					height: 224px;
-					padding: 1px 35px 0;
-					margin-top: 20px;
-					width:3000px;
-					margin-left: -1500px;
-					@include r(-5deg);
-					background-color: $purple;
-					position: relative;
-					&:after, &:before {
-						position: absolute;
-						content: "";
-						width: 100%;
-					}
-					&:after {
-						background-color: $lightpurple;
-						height: 25px;
-						bottom: -25px;
-						z-index: 50;
-					}
-					&:before{
-						background-color: #f4f4f4;
-						@include r(-1deg);
-						z-index: 99;
-						height: 25px;
-						bottom: -42px;
-					}
-					.inner{
-						width: 1000px;
-						margin-top: 20px;
-						position: relative;
-						left: 1465px;
-						.description{
-							text-align: center;
-							margin-top: 20px;
-							p{
-								@include font($rale,16px,$bold,18px);
-								margin: 0 auto;
-								width: 100%;
-							}
-						}
-						a#play{
-							display: block;
-							background-image: url("../img/play.png");
-							background-repeat:no-repeat;
-							background-position:center center;
-							width: 51px;
-							height: 51px;
-							margin:14px auto 0;
-						}
-						span{
-							@include font($rale,16px,$thin,18px);
-							margin: 20px auto 0;
-							display: block;
-							text-align: center;
-						}
-					}
+					//background-image: url(../img/need.webp);
 				}
 			}
 			&#involved{}
@@ -405,9 +495,15 @@ body{
 		}
 	}
 }
+
+
 #need{
+	.tagline{
+				margin-bottom:0;
+				margin-top:70px;
+			}
 	#badges { 
-		margin-top: 30px;
+		margin-top: 55px;
 		& > div {
 			$margin:20px;
 			&:first-child{
@@ -426,9 +522,7 @@ body{
 				color:$orange;
 				margin: 0 auto;
 				display: block;
-				-webkit-border-radius: 59px;
-				-moz-border-radius: 59px;
-				border-radius: 59px;
+				@include br(59px);
 				width: 118px;
 				height: 118px;
 				background-color: #ffffff;
@@ -445,6 +539,81 @@ body{
 			}
 		}
 	}
+}
+#video{
+	position: fixed;
+	width: 700px;
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+	z-index: 99999999;
+	@include r(0deg);
+	top: -webkit-calc(50% - 165px);
+	top:    -moz-calc(50% - 165px);
+	top:      -o-calc(50% - 165px);
+	top:         calc(50% - 165px);
+	left: -webkit-calc(50% - 340px);
+	left:    -moz-calc(50% - 340px);
+	left:      -o-calc(50% - 340px);
+	left:         calc(50% - 340px);
+	@include trans(all 0.2s ease);
+	@include bs(0px 0px 5px rgba(0,0,0,0.8));
+	&.on{
+		height: 225px;
+		opacity: 1;
+		overflow: visible;
+		@include trans(opacity .2s linear .25s);
+	}
+	&.hide{
+		overflow: hidden;
+		height: 225px;
+	}
+	iframe{
+		
+	}
+	span.x{
+		position: absolute;
+		right: -12px;
+		top: -12px;
+		cursor: pointer;
+		opacity: 0;
+		border: 2px solid #000;
+		width: 24px;
+		height: 24px;
+		display: block;
+		text-align: center;
+		background-color: #fff;
+		color: #000;
+		text-transform: uppercase;
+		@include br(12px);
+		@include font($rale,11px,$bold,22px);
+		@include bs(0px 0px 4px rgba(0,0,0,.7));
+		&.on{
+			opacity: 1;
+		}
+	}
+}
+#modal{
+	// min-height: 100%;
+	height:0;
+	opacity: 0;
+	cursor: pointer;
+	max-height: 99999px;
+	@include trans(all .2s linear 0.25s);
+	min-width: 100%;
+		background-image: url("../img/modal.jpg");
+		position: fixed;
+		z-index: 9999999;
+		background-repeat:no-repeat;
+		background-size: cover;
+		top: 0;
+		left: 0;
+		background-position:center center;
+		&.on{
+			height: 100%;
+			opacity: 1;
+			@include trans(opacity .2s linear);
+		}
 }
 .involved-main{
 	margin: 80px auto 0;
@@ -464,10 +633,10 @@ body{
 		}
 	}
 	h2{
-		@include font("raleway",25px,$bold,35px);
 		text-align: center;
 		color: $purple;
 		margin: 0;
+		@include font("raleway",25px,$bold,35px);
 	}
 	.tagline {
 		@include r(0deg);
@@ -480,6 +649,9 @@ body{
 		margin-top: 30px;
 		& > div {
 			$margin:20px;
+			.badge{
+				@include trans(all .2s ease-in-out);
+			}
 			&:first-child{
 				.badge{
 					float: right;
@@ -494,9 +666,13 @@ body{
 			}
 			&.vol{
 				.badge{
+					cursor: pointer;
 					background-position: 20px -140px;
 					background-color: $purple;
 					display: block;
+					&:hover{
+						background-color:lighten($purple,16%);
+					}
 				}
 				p{
 					color:$purple;
@@ -512,6 +688,9 @@ body{
 					background-position: -96px -140px;
 					background-color: $green;
 					display: block;
+					&:hover{
+						background-color:lighten($green,15%);
+					}
 				}
 				p{
 					color:$green;
@@ -524,6 +703,9 @@ body{
 					background-position: -210px -145px;
 					background-color: $purple;
 					display: block;
+					&:hover{
+						background-color:lighten($purple,15%);
+					}
 				}
 				p{
 					color:$purple;
@@ -539,9 +721,7 @@ body{
 				background-repeat:no-repeat;
 				margin: 0 auto;
 				display: block;
-				-webkit-border-radius: 59px;
-				-moz-border-radius: 59px;
-				border-radius: 59px;
+				@include br(59px);
 				width: 118px;
 				height: 118px;
 				text-transform: uppercase;
@@ -575,24 +755,92 @@ footer{
 	background-color: #4c4c4c;
 	padding: 50px;
 	width: 100%;
+	$color: #e6e6e6;
+	color: $color;
 	.footer{
 		width:300px;
 		min-height: 100%;
 		float: left;
+		.copy{
+			margin-top: 15px;
+			p{
+				@include font($rale,12px,$normal,10px);
+				text-transform: none;
+				a{
+
+				}
+			}
+		}
+		&.questions{
+			text-transform: none;
+			h1{
+				@include font($rale,22px,$bold,19px);
+				margin: 0 0 15px;
+				padding: 0;
+				color: $color;
+			}
+			h2{
+				@include font($rale,12px,$bold,19px);
+			}
+			p{
+				@include font($rale,12px,$normal,30px);
+				a{
+
+				}
+			}
+		}
+		&.pages{
+			margin-top: -5px;
+			background-color: #313131;
+			h1{
+				@include font($rale,14px,$bold,19px);
+				margin: 15px;
+			}
+			ul{
+				list-style: none;
+				li{
+					a{
+						border-bottom: 1px solid darken($color, 40%);
+						display: block;
+						text-transform: none;
+						@include font($rale,14px,$normal,29px);
+					}
+					width: 85%;
+					&:last-child{
+						a{
+							border: none;
+						}
+					}
+				}
+			}
+		}
 		&.social{
 			h1{
 				@include font($rale,22px,$bold,19px);
-				margin: 0;
+				margin: 0 0 15px;
 				padding: 0;
+				color: $color;
 			}
 			a.sm{
+				display: block;
+				color: $color;
+				float: left;
+				width: 100%;
+				$padding-top:8px;
+				padding-top:$padding-top;
+				height: 55px;
+				margin: 10px 0 10px 60px;
 				position: relative;
+				@include font($rale,14px,$bold,13px);
+				text-transform: uppercase;
 				&:before{
 					background-image: url("../img/social.png");
 					background-repeat:no-repeat;
 					@include font($rale,14px,$bold,13px);
 					width: 54px;
 					height: 54px;
+					top:0px - $padding-top;
+					left: -60px;
 					position: absolute;
 					content: "";
 				}
@@ -616,7 +864,66 @@ footer{
 		}
 	}
 }
+#mc_embed_signup{
+	position: fixed;
+	top: -webkit-calc(50% - 230px);
+	top:    -moz-calc(50% - 230px);
+	top:      -o-calc(50% - 230px);
+	top:         calc(50% - 230px);
+	left: -webkit-calc(50% - 375px);
+	left:    -moz-calc(50% - 375px);
+	left:      -o-calc(50% - 375px);
+	left:         calc(50% - 375px);
+	z-index: 99999999999;
+}
+.volunteer-form{
+	position: fixed;
+	left: 0;
+	right:0;
+	top:0;
+	bottom:0;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 9999999999;
+}
+form#mc-embedded-subscribe-form{
+	background-color: rgba(102,102,102,0.86);
+	width: 757px;
+	height: 464px;
+	position: relative;
+	// height: 0;
+	// overflow: hidden;
+	@include trans(all .2s ease .1s);
+	// opacity: 0;
+	@include bs(0px 0px 5px rgba(0,0,0,0.8));
+	z-index: 99999999;
+	
+	legend{}
+	h2{}
+	div.mc-field-group{
+		label{}
+    	input {
+    		&#mce-FNAME{
 
+    		}
+    		&#mce-LNAME{
+
+    		}
+    		&#mce-EMAIL{
+
+    		}
+    		&#number{
+
+    		}
+    	}
+    	div.phonefield{
+    		span.phonearea{}
+    		input#mce-CONTACTNUM-area{}
+    		input#mce-CONTACTNUM-detail1{}
+    		input#mce-CONTACTNUM-detail2{}
+
+    	}
+	}
+}
 .navbar-default{
 	// -webkit-transition: all .1s ease-in-out;
 	// -moz-transition: all .1s ease-in-out;

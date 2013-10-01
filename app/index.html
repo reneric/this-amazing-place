@@ -2,8 +2,7 @@
   <html>
   <head>
     <title>The Amazing Place</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
+    <meta name="viewport" content="width=1000px, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/app.css" rel="stylesheet" media="screen">
     <link href="css/live.css" rel="stylesheet" media="screen">
@@ -18,7 +17,7 @@
 <div id="container" ng-app>
 <!-- Navigation -->
 <div id="fixed"></div>
-  <div id="nav-wrap">
+  <div id="nav-wrap" class="clearfix">
     <nav class="navbar navbar-default" role="navigation" ng-controller="Nav">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -40,22 +39,29 @@
 <!-- Pages/views -->
   <div id="pages">
     <div class="pages-wrap" ng-controller="Pages"> 
-      <div id="intro" class="page">
-        <div class="banner" data-speed="3" data-offsetY="100" data-type="background"></div>
+      <div id="intro" class="page" rel="lazy" data-bg="img/intro-bg.webp">
+        <div class="banner" rel="bg" data-bg="img/banner.webp" data-speed="3" data-offsetY="100" data-type="background"></div>
       </div><!-- intro -->
-      <div id="{{page.div}}" class="page" ng-repeat="page in pages" ng-include="page.layout"></div>
+      <div id="{{page.div}}" rel="{{page.rel}}" data-bg="{{page.bg}}" class="page" ng-repeat="page in pages" ng-include="page.layout"></div>
     </div><!-- page-wrap   -->
   </div><!-- pages -->
   <!-- end pages/views -->
 <footer ng-include="'partials/footer.html'"></footer>
+<div id="modal"></div>
 </div><!-- container -->
-<script src="//code.jquery.com/jquery.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    
+    
     <script src="js/app.js"></script>
     <script src="js/controller.js"></script>
     <script src="js/main.js"></script>
-    <!--<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>-->
-  </body>
+    <script>document.write('<script src="http://192.168.0.116:35729/livereload.js?snipver=1"></' + 'script>')</script>
+    <div id="video">
+      <iframe id="player1" src="http://player.vimeo.com/video/75818792?api=1&player_id=player1" width="700" height="393" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+      <span class="x">x</span>
+    </div>
+</body>
 </html>

@@ -11,18 +11,18 @@
 	<h2>How can you help?</h2>
 	<div id="badges" class="row">
 		<div class="col-md-4 vol">
-			<div class="badge">
+			<div class="badge" ng-click="showForm = ! showForm">
 			</div><!-- badges -->
 			<p>Volunteer</p>
 		</div>
 		<div class="col-md-4 purchase">
-			<div class="badge">
-			</div><!-- badges -->
+			<a href="http://brushfire.e-vent.info/Events/ThisAmazingPlace/Events.aspx?ID=29255" target="_blank" class="badge">
+			</a><!-- badges -->
 			<p>Purchase <br/>Tickets</p>
 		</div>
 		<div class="col-md-4 sponsor">
-			<div class="badge">
-			</div><!-- badges -->
+			<a href="http://brushfire.e-vent.info/Events/ThisAmazingPlace/Events.aspx?ID=29256" target="_blank" class="badge">
+			</a><!-- badges -->
 			<p>Sponsor</p>
 		</div>
 	</div><!-- badges -->
@@ -30,4 +30,5 @@
 		<h2>Be a part of the change in this community.</h2>
 	</div>
 </div><!-- involved-main -->
+<div class="volunteer-form" ng-show="showForm" ng-include="'partials/volunteer_form.html'"></div>
 <script src="js/plugins.js"></script>

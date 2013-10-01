@@ -37,13 +37,24 @@ function Pages($scope) {
   $scope.pages = [
     {"name": "This Amazing Event",
       "div": "event",
+      "bg": "",
+      "rel": "",
       "layout": "partials/events.html"},
     {"name": "This Amazing Need",
       "div": "need",
+      "rel": "bg",
+      "bg": "img/need.webp",
       "layout": "partials/need.html"},
     {"name": "Get Involved",
       "div": "involved",
-      "layout": "partials/involved.html"}  
+      "rel": "bg",
+      "bg": "img/involved.webp",
+      "layout": "partials/involved.html"},
+    {"name": "Last Year&apos;s Event",
+      "div": "gallery",
+      "rel": "",
+      "bg": "",
+      "layout": "partials/gallery.html"}  
     ];
   $scope.selectedIndex = 0;
    $scope.itemClicked = function ($index) {
