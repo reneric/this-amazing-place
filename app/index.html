@@ -6,7 +6,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/app.css" rel="stylesheet" media="screen">
     <link href="css/live.css" rel="stylesheet" media="screen">
-    <base href="/amazingplace/app/">
+    <base href="/app/">
     <script src="js/modernizr.js"></script>
     <!--[if lt IE 9]>
       <script src="../../assets/js/html5shiv.js"></script>
@@ -40,7 +40,7 @@
   <div id="pages">
     <div class="pages-wrap" ng-controller="Pages"> 
       <div id="intro" class="page" rel="lazy" data-bg="img/intro-bg.webp">
-        <div class="banner" rel="bg" data-bg="img/banner.webp" data-speed="3" data-offsetY="100" data-type="background"></div>
+        <div class="banner" rel="bg" data-bg="img/banner.webp" data-speed="2.5" data-offsetY="100" data-type="background"></div>
       </div><!-- intro -->
       <div id="{{page.div}}" rel="{{page.rel}}" data-bg="{{page.bg}}" class="page" ng-repeat="page in pages" ng-include="page.layout"></div>
     </div><!-- page-wrap   -->
@@ -58,10 +58,10 @@
     <script src="js/app.js"></script>
     <script src="js/controller.js"></script>
     <script src="js/main.js"></script>
-    <script>document.write('<script src="http://192.168.0.116:35729/livereload.js?snipver=1"></' + 'script>')</script>
     <div id="video">
       <iframe id="player1" src="http://player.vimeo.com/video/75818792?api=1&player_id=player1" width="700" height="393" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
       <span class="x">x</span>
     </div>
+    
 </body>
 </html>

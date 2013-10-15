@@ -104,10 +104,7 @@ h5 {
     margin-top: -60px;
   }
   .webp #pages div.page#event div.left_col, .webp #pages div.page#event div.right_col {
-    width: -webkit-calc(100% - 0px);
-    width: -moz-calc(100% - 0px);
-    width: -o-calc(100% - 0px);
-    width: calc(100% - 0px);
+    widows: 100%;
     margin: 0 auto;
   }
   .webp #pages div.page#event div.left_col h1, .webp #pages div.page#event div.right_col h1 {
@@ -228,10 +225,7 @@ body {
 
 #pages div.page {
   background-position: top left;
-  width: -webkit-calc(100% - 0px);
-  width: -moz-calc(100% - 0px);
-  width: -o-calc(100% - 0px);
-  width: calc(100% - 0px);
+  width: 100%;
   background-repeat: no-repeat;
   padding: 0 35px;
 }
@@ -249,6 +243,7 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
+  background-image: url("../img/banner.png");
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -473,7 +468,7 @@ body {
   transform: rotate(-5deg);
 }
 #pages div.page#need .need-main div.row.header {
-  margin: 0px 75px 0 15px;
+  margin: 30px 75px 0 15px;
 }
 #pages div.page#need .need-main div.row.icons {
   margin-top: 45px;
@@ -694,14 +689,6 @@ body {
   -ms-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  top: -webkit-calc(50% - 165px);
-  top: -moz-calc(50% - 165px);
-  top: -o-calc(50% - 165px);
-  top: calc(50% - 165px);
-  left: -webkit-calc(50% - 340px);
-  left: -moz-calc(50% - 340px);
-  left: -o-calc(50% - 340px);
-  left: calc(50% - 340px);
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   -ms-transition: all 0.2s ease;
@@ -1060,8 +1047,16 @@ footer .footer.social a.tw {
   background-position: 0 0;
 }
 
+.volunteer-form #mc_embed_signup .button {
+  background-color: #67cbc4;
+}
+.volunteer-form #mc_embed_signup .button:hover {
+  background-color: #41beb5;
+}
+
 #mc_embed_signup {
-  position: fixed;
+  position: absolute;
+  cursor: pointer;
   top: -webkit-calc(50% - 230px);
   top: -moz-calc(50% - 230px);
   top: -o-calc(50% - 230px);
@@ -1071,6 +1066,34 @@ footer .footer.social a.tw {
   left: -o-calc(50% - 375px);
   left: calc(50% - 375px);
   z-index: 99999999999;
+}
+#mc_embed_signup span.x {
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  cursor: pointer;
+  z-index: 99999999999;
+  border: 2px solid #000;
+  width: 24px;
+  height: 24px;
+  display: block;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+  text-transform: uppercase;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  font-family: "Raleway";
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 22px;
+  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+}
+#mc_embed_signup span.x.on {
+  opacity: 1;
 }
 
 .volunteer-form {
@@ -1116,7 +1139,7 @@ form#mc-embedded-subscribe-form {
   /* IE6-9 */
 }
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, nav.navbar-default div.collapse ul li a:hover {
   background-color: transparent;
   color: #67cbc4;
 }

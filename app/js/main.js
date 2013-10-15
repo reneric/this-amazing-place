@@ -1,11 +1,18 @@
 $(function(){
-
+  var video = $('#video');
   var $nav = $('.navbar-default');
   var $navHeight = $nav.height();
   var $navLink = $('.nav li a');
   var $container = $('#container');
   var $navWrap = $('#nav-wrap');
   var $navWrapOffset = $navWrap.scrollTop()+60;
+  var winheight = $(window).height() / 2;
+  var winwidth = $(window).width() / 2;
+  video.css({
+    "top":winheight-165+'px',
+    "left":winwidth-340+'px'
+
+  })
   $(window).resize(function(){
     var $cOffset = $container.offset();
     var $offsetLeft = $cOffset.left;

@@ -65,10 +65,7 @@ $mobile:728px;
 		div.page#event {
 
 			div.left_col,div.right_col{
-				width: -webkit-calc(100% - 0px);
-				width:    -moz-calc(100% - 0px);
-				width:      -o-calc(100% - 0px);
-				width:         calc(100% - 0px);
+				widows: 100%;
 				margin: 0 auto;
 				h1{
 					min-height: 100%;

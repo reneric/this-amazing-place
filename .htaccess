@@ -1,0 +1,12 @@
+# For security reasons, Option followsymlinks cannot be overridden.
+#Options +FollowSymLinks
+Options +SymLinksIfOwnerMatch
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !(.*)app 
+RewriteRule ^(.*)$ app/$1 [L]
+    RewriteCond %{REQUEST_URI} !^/amazingplace/app
+    RewriteCond %{DOCUMENT_ROOT}/amazingplace/app%{REQUEST_URI} -d
+    RewriteRule ^(.*?)/?$ /amazingplace/app/$1/ [L]
+
+    RewriteCond %{REQUEST_URI} !^/app
+    RewriteRule ^(.*)$ /app/$1 [L]
