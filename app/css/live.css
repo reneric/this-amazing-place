@@ -3,4 +3,32 @@
 	max-width: 1000px;
 }
 .navbar-default{}
+#pages div.page#event div.left_col{
+	width: 395px;
+	max-width: 100%;
+}
+#pages div.page#event div.right_col{
+	width: 445px;
+	max-width: 100%;
+}
 #pages{}
+#pages div.page#event{
+	
+
+}
+#images {
+margin-left: 35px;
+}
+#images img{}
+#pages div.page#gallery{
+	display: none;
+}
+#pages div.page#event div.left_col h1,
+#pages div.page#intro{
+	opacity: 0;
+	-webkit-transition: opacity .5s ease;
+	-moz-transition: opacity .5s ease;
+	-ms-transition: opacity .5s ease;
+	-o-transition: opacity .5s ease;
+	transition: opacity .5s ease;
+}

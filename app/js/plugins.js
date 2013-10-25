@@ -499,6 +499,54 @@ $(document).ready(function(){
     $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
   });
 })( jQuery );
+var urlRe = /^\s*url\("?([^"]*)"?\)$/;
+  $.fn.cssBackgroundReady = function (handler) {
+    var urls, collection, toLoad, loaded;
+
+    collection = this;
+
+    // get all URLs
+    urls = (function () {
+      var urlObj = {}, urls = [], url;
+      collection.each(function () {
+        var css = $(this).css('background-image'), parts, i;
+        parts = css.split(',');
+        for (i = parts.length; i--;) {
+          if (urlRe.test(parts[i])) {
+            urlObj[parts[i].match(urlRe)[1]] = true;
+          }
+        }
+      });
+      for (url in urlObj) {
+        if (urlObj.hasOwnProperty(url)) {
+          urls.push(url);
+        }
+      }
+      return urls;
+    }());
+
+    // invokes the callback once every image was loaded
+    loaded = function () {
+      toLoad--;
+      if (!toLoad && handler) {
+        handler.call(collection);
+      }
+    };
+
+    toLoad = urls.length;
+
+    // load all images
+    (function () {
+      var i, image;
+      for (i = toLoad; i--;) {
+        image = new Image();
+        image.onload = loaded;
+        image.src = urls[i];
+      }
+    }());
+
+    return collection;
+  };
 /*
 * Copyright (C) 2009 Joel Sutherland
 * Licenced under the MIT license
@@ -515,3 +563,236 @@ item.description=item.description.replace('<p>','').replace('</p>','');}}
 item['image_s']=item.media.m.replace('_m','_s');item['image_t']=item.media.m.replace('_m','_t');item['image_m']=item.media.m.replace('_m','_m');item['image']=item.media.m.replace('_m','');item['image_b']=item.media.m.replace('_m','_b');delete item.media;if(settings.useTemplate){var template=settings.itemTemplate;for(var key in item){var rgx=new RegExp('{{'+key+'}}','g');template=template.replace(rgx,item[key]);}
 $container.append(template)}
 settings.itemCallback.call(container,item);}});if($.isFunction(callback)){callback.call(container,data);}});});}})(jQuery);
+// Copyright 2007
+// Jonathan D. Wilson
+//
+// All Rights Reserved
+
+// RandRenderer
+//   A module that allows quickly and easliy adding configurable photo galleries
+// serving Smugmug data to arbitrary web pages.
+//
+// There's still a lot of cleaning and fixing that needs to be done.  But it's
+// functional, although the interface will likely change once I can use
+// ShareGroups.
+
+// If there's a smug_debug element, let's output our debug to it.
+function debugOutput(text) {
+  var elt = document.getElementById("smug_debug");
+  if (elt) {
+    elt.innerHTML += "<BR>" + text;
+  }
+}
+
+// When we pull data from smugmug, we end up with an extra script tag laying
+// around.  We need to get rid of it so we don't overrun ourselves with
+// unwanted tags if we play too long.
+function removeId(name) {
+  var elt = document.getElementById(name);
+  if (elt) {
+    document.getElementsByTagName('head')[0].removeChild(elt);
+    debugOutput("Removed " + name);
+  } else {
+    debugOutput("Could not find " + name);
+  }
+}
+    
+
+// We need to be able to ask Smugmug for data
+function getSmugmugData(method, params, callback) {
+  var foo = document.createElement("script");
+  foo.setAttribute("type", "text/javascript");
+  foo.setAttribute("id", "remove_me_" + callback);
+  debugOutput("Added remove_me_" + callback);
+  foo.setAttribute("src", "http://api.smugmug.com/services/api/json/1.2.1?" +
+                          "method=" + method + "&" +
+                          "APIKey=" + "ci42058bUlNsMjodefqMvXE0TsnVodKZ" + "&" +
+                          "JSONCallback=" + callback +
+                          (params != "" ? "&" : "") +
+                          params);
+  debugOutput(foo.getAttribute("src"));
+  document.getElementsByTagName('head')[0].appendChild(foo);
+}
+
+// Get the session ID to use for all Smugmug calls
+var sessionID = false;
+function getAnonSession(data) {
+  debugOutput(data.toSource());
+  removeId("remove_me_getAnonSession");
+  sessionID = data.Login.Session.id;
+}
+
+// We've got a function to let us wait for the session to be loaded.
+function DoWithSessionID(func) {
+  if (!sessionID) {
+    setTimeout(function() { DoWithSessionID(func); }, 250);
+  } else {
+    func();
+  }
+}
+
+var id = 0;
+var randrenderer_arr = new Array(0);
+function RandRendererCreator(name, sharegroup, host, data_host) {
+  tmp = new RandRenderer("randrenderer_arr[" + id + "]",
+                         name, sharegroup, host, data_host);
+  randrenderer_arr.push(tmp);
+  id = id + 1;
+}
+
+// Here we do all the heavy lifting.
+function RandRenderer(my_name, name, sharegroup, host, data_host) {
+  var me = this;
+
+  // Variables
+  this.canvas = document.getElementById(name);
+  this.sharegroup = sharegroup;
+  this.host = host;
+  this.name = my_name;
+  APIKey = "ci42058bUlNsMjodefqMvXE0TsnVodKZ";
+  this.gallery = 0;
+  this.image = 0;
+  this.images = null;
+  this.albums = null;
+  this.image_size = 200;
+  this.data_host = data_host;
+
+  function createElement(type, itsParent, className) {
+    var elt = document.createElement(type);
+    itsParent.appendChild(elt);
+    if (className != "") {
+      elt.className = className;
+    }
+    return elt;
+  }
+
+  // Make the image div
+  this.myTable = createElement("table", this.canvas, "");
+  this.myTable.setAttribute("CELLPADDING", "0");
+  this.myTable.setAttribute("CELLSPACING", "0");
+
+  this.tableBody = createElement("TBODY", this.myTable, "");
+  var row = createElement("TR", this.tableBody, "");
+  this.galleryName = createElement("TD", row, name + "_text");
+  this.galleryName.colSpan = 3;
+  this.galleryName.style.textAlign = "center";
+  var row = createElement("TR", this.tableBody, "");
+  var dat = createElement("TD", row, "");
+  dat.colSpan = 3;
+  dat.style.textAlign = "center";
+  if (this.canvas.style.width != "") {
+    dat.style.width = this.canvas.style.width;
+    dat.style.height = this.canvas.style.width;
+    this.image_size = (1*this.canvas.style.width.replace(/px/, "")) - 4;
+  }
+  dat.setAttribute("VALIGN", "center");
+  dat.style.padding = "0px";
+  
+  var center = createElement("CENTER", dat, "");
+  this.a = createElement("A", center, "");
+  this.img = createElement("IMG", this.a, "");
+  this.img.style.verticalAlign = "middle";
+  this.img.style.borderWidth = "0px";
+
+  function getAlbums(data) {
+    debugOutput(data.toSource());
+    this.albums = data.Albums;
+    removeId("remove_me_" + this.name + ".getAlbums");
+    this.gallery = Math.floor(Math.random() * this.albums.length);
+
+    getSmugmugData("smugmug.images.get",
+                    "AlbumID=" + this.albums[this.gallery].id + "&" +
+                        "SessionID=" + sessionID,
+                    this.name + ".getImages");
+  }
+  this.getAlbums = getAlbums;
+
+  function getImages(data) {
+    removeId("remove_me_" + this.name + ".getImages");
+    var rnd = Math.floor(Math.random() * data.Images.length);
+    this.images = data.Images;
+    this.image = rnd;
+    this.UpdateImage();
+  }
+  this.getImages = getImages;
+
+  function getRandomImage() {
+    this.gallery = Math.floor(Math.random() * this.albums.length);
+
+    getSmugmugData("smugmug.images.get",
+                    "AlbumID=" + this.albums[this.gallery].id + "&" +
+                        "SessionID=" + sessionID,
+                    this.name + ".getImages");
+  }
+  this.getRandomImage = getRandomImage;
+
+  function nextImage() {
+    ++this.image;
+    if (this.image >= this.images.length) this.image = 0;
+    this.UpdateImage();
+  }
+  this.nextImage = nextImage;
+
+  function prevImage() {
+    --this.image;
+    if (this.image < 0) this.image = (this.images.length - 1);
+    this.UpdateImage();
+  }
+  this.prevImage = prevImage;
+
+  // Setup image
+  function UpdateImage() {
+    image_id = this.images[this.image].id;
+    this.galleryName.innerHTML = this.albums[this.gallery].Title;
+    this.a.setAttribute("href", "http://" + this.host + "/gallery/" + this.albums[this.gallery].id + "#" + image_id);
+    this.img.setAttribute("src", "http://" + this.host + "/photos/" + image_id + "-" + this.image_size + "x" + this.image_size + ".jpg");
+  }
+  this.UpdateImage = UpdateImage;
+
+  // Make left and right arrows
+  row = document.createElement("TR");
+  this.tableBody.appendChild(row);
+  dat = document.createElement("TD");
+  row.appendChild(dat);
+  dat.style.width = "30%";
+  var tmp_img = document.createElement("IMG");
+  tmp_img.src = this.data_host + "left.png";
+  dat.appendChild(tmp_img);
+  dat.title = "Previous Image";
+  dat.onclick = function() { me.prevImage(); };
+  dat = document.createElement("TD");
+  row.appendChild(dat);
+  dat.style.width = "40%";
+  dat.style.textAlign = "center";
+  tmp_img = document.createElement("IMG");
+  tmp_img.src = this.data_host + "rand.png";
+  dat.appendChild(tmp_img);
+  dat.title = "Random Gallery";
+  dat.onclick = function() { me.getRandomImage(); };
+  dat = document.createElement("TD");
+  row.appendChild(dat);
+  dat.style.width = "30%";
+  dat.style.textAlign = "right";
+  tmp_img = document.createElement("IMG");
+  tmp_img.src = this.data_host + "right.png";
+  dat.appendChild(tmp_img);
+  dat.title = "Next Image";
+  dat.onclick = function() { me.nextImage(); };
+
+  // We need to connect to smugmug.. wait until we've got our session ready.
+
+  function getNewImages() {
+    getSmugmugData("smugmug.albums.get",
+//    getSmugmugData("smugmug.sharegroups.getInfo",
+                   me.sharegroup + "&" +
+//"NickName=rerenderer&" +
+                    //"ShareGroup=" + me.sharegroup + "&" +
+                        //"Heavy=1&" + 
+                    "SessionID=" + sessionID,
+                    me.name + ".getAlbums");
+  }
+  this.getNewImages = getNewImages;
+  DoWithSessionID(this.getNewImages);
+}
+
+getSmugmugData("smugmug.login.anonymously", "", "getAnonSession");

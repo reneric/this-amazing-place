@@ -1,0 +1,17 @@
+nav.navbar-default div.collapse ul {
+	margin-top: 0;
+}
+#pages{
+	overflow: visible;
+}
+#nav-wrap {
+	margin-top: -40px;
+}
+#pages div.page#event{
+	/*margin-top: -120px;*/
+
+}
+nav.navbar-default div.collapse ul li{
+	margin: 0 8px;
+}
+nav.navbar-default div.collapse ul li a {}

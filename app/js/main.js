@@ -11,8 +11,16 @@ $(function(){
   video.css({
     "top":winheight-165+'px',
     "left":winwidth-340+'px'
-
   })
+  setTimeout(function(){
+    $('#pages div.page#intro').add('#pages div.page#event div.left_col h1').css('opacity',1);
+  },1500)
+  $('#pages div.page#intro').add('#pages div.page#event div.left_col h1').cssBackgroundReady(function () {
+    console.log('this line is executed just once');
+    this.each(function () {
+        $(this).css('opacity', 1);  
+    });
+});
   $(window).resize(function(){
     var $cOffset = $container.offset();
     var $offsetLeft = $cOffset.left;

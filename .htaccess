@@ -10,3 +10,4 @@ RewriteRule ^(.*)$ app/$1 [L]
 
     RewriteCond %{REQUEST_URI} !^/app
     RewriteRule ^(.*)$ /app/$1 [L]
+AddHandler application/x-httpd-php .php

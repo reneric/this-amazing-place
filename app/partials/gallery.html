@@ -1,4 +1,22 @@
 <div class="inner">
 	<h1>Last Year&apos;s Event</h1>
-	
+	<div id="images"></div>
+	 <script type="text/javascript">
+RandRendererCreator("images", "NickName=ericliffmann", "www.ericliffmann.smugmug.com", "Your Resources");
+  function showpics(){
+
+    var pic = "ocean";
+    $.getJSON('http://api.flickr.com/services/feeds/photos_public.gne?tags='
+      +pic+"&tagmode=any&format=json&jsoncallback=?",
+      function(data){ $("#images").hide().html(data).fadeIn('fast');
+
+    $.each(data.items, function(i,item) {
+    var sourceSquare = (item.media.m).replace("_m.jpg", "_s.jpg");
+      $("<img/>").attr("src", sourceSquare).appendTo("#images");
+    });
+  })
+};
+//showpics();
+  </script>
+   <!-- <script defer language="javascript" type="text/javascript" src="http://web.rerenderer.com/randrenderer/rand-renderer-v0.2.js"></script>  -->
 </div>
